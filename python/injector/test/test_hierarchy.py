@@ -13,7 +13,7 @@ class ClassB(object):
     def __init__(self, classC):
         self.classC = classC
 
-@Inject
+@Inject()
 class TypedClassB(object):
     def __init__(self, classC:ClassC):
         self.classC = classC
@@ -25,7 +25,7 @@ class PatchMe(object):
         self.classA = classA
         self.classB = classB
 
-@Inject
+@Inject()
 class TypedPatchMe(object):
     def __init__(self, classA:ClassA, classB:TypedClassB):
         self.classA = classA

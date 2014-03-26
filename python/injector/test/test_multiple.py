@@ -15,7 +15,7 @@ class PatchMe(object):
         self.classA = classA
         self.classB = classB
 
-@Inject
+@Inject()
 class TypedPatchMe(object):
     def __init__(self, classA:ClassA, classB:ClassB):
         self.classA = classA

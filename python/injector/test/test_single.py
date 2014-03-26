@@ -10,7 +10,7 @@ class PatchMe(object):
     def __init__(self, classA):
         self.classA = classA
 
-@Inject
+@Inject()
 class TypedPatchMe(object):
     def __init__(self, classA:ClassA):
         self.classA = classA
