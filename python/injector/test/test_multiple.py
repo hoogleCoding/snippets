@@ -1,6 +1,6 @@
 import unittest
 
-from requirement import Requirement
+from injector import Requirement, Inject
 
 class ClassA(object):
     pass
@@ -15,9 +15,21 @@ class PatchMe(object):
         self.classA = classA
         self.classB = classB
 
+@Inject
+class TypedPatchMe(object):
+    def __init__(self, classA:ClassA, classB:ClassB):
+        self.classA = classA
+        self.classB = classB
+
 class TestSingleInjector(unittest.TestCase):
-    def test_it_should_inject_multiple_classes(self):
+    def test_it_should_inject_multiple_specified_classes(self):
         patched = PatchMe()
+        self.assertIsNotNone(patched)
+        self.assertIsInstance(patched.classA, ClassA)
+        self.assertIsInstance(patched.classB, ClassB)
+
+    def test_it_should_inject_multiple_classed_depending_on_type(self):
+        patched = TypedPatchMe()
         self.assertIsNotNone(patched)
         self.assertIsInstance(patched.classA, ClassA)
         self.assertIsInstance(patched.classB, ClassB)
